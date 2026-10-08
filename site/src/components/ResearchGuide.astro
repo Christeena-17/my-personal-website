@@ -1,0 +1,365 @@
+---
+import GuideSection from './GuideSection.astro';
+
+const contents = [
+	['start', 'Start a project'],
+	['sources', 'Find evidence'],
+	['data', 'Work with data'],
+	['article', 'Write the article'],
+	['publish', 'Prepare to publish'],
+];
+
+const sources = [
+	{
+		name: 'PubMed',
+		type: 'Biomedical literature database',
+		description: 'Search biomedical and life-sciences citations. Check each record’s article type, journal, and full-text links; inclusion in PubMed is not itself a guarantee of quality.',
+		url: 'https://pubmed.ncbi.nlm.nih.gov/',
+	},
+	{
+		name: 'Nature',
+		type: 'Research journals and science news',
+		description: 'Explore research papers and reviews. Check the article type and methods: a respected journal does not make an individual finding definitive.',
+		url: 'https://www.nature.com/',
+	},
+	{
+		name: 'NHS',
+		type: 'Evidence-informed health information',
+		description: 'Useful for accessible clinical and public-health context. NHS pages are health guidance, not primary research papers or individual medical advice.',
+		url: 'https://www.nhs.uk/conditions/',
+	},
+];
+
+const datasets = [
+	{
+		name: 'NCBI Gene Expression Omnibus',
+		url: 'https://www.ncbi.nlm.nih.gov/geo/',
+		description: 'Public functional-genomics data, including expression studies. Read the study design, sample annotations, and reuse terms.',
+	},
+	{
+		name: 'PhysioNet',
+		url: 'https://physionet.org/',
+		description: 'Physiological signals and clinical data. Some datasets require credentialing, training, or an approved data-use agreement.',
+	},
+	{
+		name: 'ClinicalTrials.gov',
+		url: 'https://clinicaltrials.gov/',
+		description: 'Find registered studies and posted results. Registration is useful context, but is not the same as peer review or a published paper.',
+	},
+];
+---
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" id="top">
+	<a class="wordmark" href="#top" aria-label="Beginner Guide to Research, home">
+		<span class="brand-mark" aria-hidden="true">BG</span>
+		<span>Fieldnotes <span class="brand-divider">/</span> Bioscience</span>
+	</a>
+	<nav aria-label="Main navigation">
+		<a href="#start">Start</a>
+		<a href="#sources">Sources</a>
+		<a href="#data">Data</a>
+		<a href="#article">Writing</a>
+		<a href="#publish">Publishing</a>
+		<a href="#contact">Contact</a>
+	</nav>
+</header>
+
+<main id="main-content" tabindex="-1">
+	<section class="hero" aria-labelledby="page-title">
+		<div class="hero-copy">
+			<p class="eyebrow"><span></span>A field guide for curious minds</p>
+			<h1 id="page-title">Beginner guide<br />to <em>research.</em></h1>
+			<p class="hero-intro">A clear path from your first question to a well-written paper. For students and early-career researchers in biology and medical sciences.</p>
+			<a class="hero-link" href="#start">Explore the guide <span aria-hidden="true">↓</span></a>
+			<p class="hero-note">Curiosity first. Evidence always.</p>
+		</div>
+		<figure class="hero-visual">
+			<img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1100&q=85" alt="A biomedical researcher working with laboratory equipment" fetchpriority="high" />
+			<figcaption><span>OBSERVE</span><span>QUESTION</span><span>INVESTIGATE</span></figcaption>
+			<span class="hero-index" aria-hidden="true">FIELD GUIDE 01—05</span>
+		</figure>
+	</section>
+
+	<div class="guide-layout">
+		<aside class="contents" aria-label="Guide contents">
+			<p class="contents-heading">In this guide</p>
+			<ol>
+				{contents.map(([id, label], index) => (
+					<li><a href={`#${id}`}><span>0{index + 1}</span>{label}</a></li>
+				))}
+			</ol>
+			<div class="contents-note"><span aria-hidden="true">i</span><p>Learning resource only. Not medical advice.</p></div>
+		</aside>
+
+		<div class="guide-content">
+			<GuideSection id="start" number="01" kicker="Begin with a question" title="Start small. Think clearly.">
+				<p class="section-lead">Research is a structured way to answer a question using evidence. You do not need a breakthrough idea to begin; you need a focused question, a feasible plan, and honest methods.</p>
+				<div class="steps-grid">
+					<article><span>A</span><h3>Choose a topic</h3><p>Start with a subject that interests you. Read an introductory review, then note what is known and what remains uncertain.</p></article>
+					<article><span>B</span><h3>Make it answerable</h3><p>Define the population or system, exposure or intervention, comparison, and outcome. For clinical questions, PICO can help focus the scope.</p></article>
+					<article><span>C</span><h3>Plan before collecting</h3><p>Choose a design that fits the question, define measures and analysis in advance, and ask a supervisor or statistician about feasibility and sample size.</p></article>
+				</div>
+				<aside class="ethics-callout"><strong>Before involving people, samples, or identifiable records</strong><p>Check with your institution’s research ethics committee and data-protection lead before starting. Approval, consent, and governance requirements depend on the study and location.</p></aside>
+			</GuideSection>
+
+			<GuideSection id="sources" number="02" kicker="Read beyond the abstract" title="Find evidence you can trust.">
+				<p class="section-lead">A search result is a starting point, not an endorsement. Trace claims to the original study, check how it was done, and compare it with the wider evidence.</p>
+				<div class="source-list">
+					{sources.map((source, index) => (
+						<article class="source-row">
+							<span class="row-index">0{index + 1}</span>
+							<div><p class="source-type">{source.type}</p><h3><a href={source.url} target="_blank" rel="noreferrer">{source.name}<span aria-label=" (opens in a new tab)"> ↗</span></a></h3><p>{source.description}</p></div>
+						</article>
+					))}
+				</div>
+				<div class="evidence-panel">
+					<h3>Five checks for a paper</h3>
+					<ul>
+						<li><strong>Study type:</strong> original research, review, systematic review, or commentary?</li>
+						<li><strong>Methods:</strong> are the design, sample, measures, and analysis clear?</li>
+						<li><strong>Limits:</strong> do the authors discuss bias, uncertainty, and limitations?</li>
+						<li><strong>Context:</strong> do independent studies support or challenge the finding?</li>
+						<li><strong>Journal:</strong> can you verify its editorial process, peer review, and policies?</li>
+					</ul>
+					<p class="caution">Peer review is an important quality check, not proof that a result is correct. A database, journal name, or professional-looking website alone is not enough.</p>
+				</div>
+				<figure class="research-image">
+					<img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=80" alt="A scientist examining a specimen through a microscope" loading="lazy" />
+					<figcaption>Research begins with careful observation.</figcaption>
+				</figure>
+			</GuideSection>
+
+			<GuideSection id="data" number="03" kicker="Use data responsibly" title="Practise with the right dataset.">
+				<p class="section-lead">Public datasets are useful for learning, but “public” does not mean unrestricted. Read the documentation, licensing, access rules, and original publication before reusing data.</p>
+				<div class="dataset-list">
+					{datasets.map((dataset, index) => (
+						<article class="dataset-row"><span class="row-index">0{index + 1}</span><div><h3><a href={dataset.url} target="_blank" rel="noreferrer">{dataset.name}<span aria-label=" (opens in a new tab)"> ↗</span></a></h3><p>{dataset.description}</p></div></article>
+					))}
+				</div>
+				<div class="data-callout"><div><span aria-hidden="true">!</span><h3>Medical data needs extra care</h3></div><p>Health and genomic data can be sensitive, even when names have been removed. Use only data you are authorized to access; follow consent conditions, data-use agreements, security requirements, and local law. Never try to identify participants.</p></div>
+				<div class="workflow" aria-label="A simple data workflow"><span>Read the codebook</span><span aria-hidden="true">→</span><span>Check variables and missingness</span><span aria-hidden="true">→</span><span>Record each decision</span></div>
+			</GuideSection>
+
+			<GuideSection id="article" number="04" kicker="Turn a study into a paper" title="Write so others can follow.">
+				<p class="section-lead">Many original research articles use an IMRaD structure. Follow the target journal’s author instructions and reporting guideline; different study types may need different sections.</p>
+				<div class="imrad-list">
+					<article><span>I</span><div><h3>Introduction <small>Why was this study needed?</small></h3><p>Set the context, summarize relevant evidence, identify the specific gap, then state the research question, aim, and hypothesis if appropriate.</p><em>Move from broad context to the precise question.</em></div></article>
+					<article><span>M</span><div><h3>Methods <small>What did you do?</small></h3><p>Describe the design, setting, participants or samples, eligibility criteria, measures, procedures, ethics approval, and statistical analysis with enough detail to assess or reproduce the work.</p><em>Report what was actually done, including changes from the plan.</em></div></article>
+					<article><span>R</span><div><h3>Results <small>What did you find?</small></h3><p>Report sample flow, primary findings, and relevant estimates with uncertainty. Use tables and figures to clarify; do not repeat every value in the text.</p><em>Keep interpretation for the Discussion.</em></div></article>
+					<article><span>D</span><div><h3>Discussion <small>What do the findings mean?</small></h3><p>Summarize the main result, compare it with prior work, discuss strengths and limitations, and state implications without overstating causality or certainty.</p><em>End with a proportionate conclusion, not a new claim.</em></div></article>
+					<article><span>R</span><div><h3>References <small>Where did the evidence come from?</small></h3><p>Cite sources for other people’s ideas, methods, data, or words. Use the required style consistently and verify authors, title, journal, year, and DOI.</p><em>Use a reference manager, then check every citation against its source.</em></div></article>
+				</div>
+				<figure class="writing-image">
+					<img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=80" alt="A person writing notes at a desk" loading="lazy" />
+					<figcaption>Draft, revise, verify: clear writing is part of clear research.</figcaption>
+				</figure>
+				<aside class="writing-note"><strong>A practical drafting order</strong><p>After the study is complete, many authors draft Methods and Results first, then Introduction and Discussion, and write the title and abstract last. Check the journal’s required format.</p></aside>
+			</GuideSection>
+
+			<GuideSection id="publish" number="05" kicker="Share work with care" title="Prepare for publication.">
+				<p class="section-lead">Publishing is a process of transparent reporting and review. A rejection or request for revision is common; it is not, by itself, a verdict on your potential as a researcher.</p>
+				<ol class="publish-steps">
+					<li><span>1</span><div><h3>Choose a suitable journal</h3><p>Check the journal’s scope, recent articles, readership, indexing, peer-review process, fees, and publication policies.</p></div></li>
+					<li><span>2</span><div><h3>Follow the instructions</h3><p>Use the required structure, word limits, reference style, figures, declarations, and reporting checklist. EQUATOR helps identify guidelines such as CONSORT, STROBE, and PRISMA.</p></div></li>
+					<li><span>3</span><div><h3>Complete ethics and disclosures</h3><p>Include ethics approval or exemption, consent where applicable, funding, conflicts of interest, author contributions, and data availability statements.</p></div></li>
+					<li><span>4</span><div><h3>Submit and respond carefully</h3><p>Send the manuscript and a concise cover letter. Address reviewer comments point by point, explain changes, and keep a respectful record of the response.</p></div></li>
+				</ol>
+				<div class="guideline-band"><div><p class="source-type">REPORTING GUIDELINES</p><h3>Make the study easier to assess.</h3><p>Use a guideline that matches your study design.</p></div><a href="https://www.equator-network.org/" target="_blank" rel="noreferrer">Explore EQUATOR Network <span aria-label=" (opens in a new tab)">↗</span></a></div>
+			</GuideSection>
+
+			<section class="contact" id="contact" aria-labelledby="contact-title">
+				<p class="section-kicker">Contact info</p>
+				<h2 id="contact-title">Let’s connect.</h2>
+				<div class="contact-panel">
+					<div class="contact-copy">
+						<p>For collaborations, feedback, or questions about research methods, I’m happy to hear from you.</p>
+					</div>
+					<ul class="contact-list">
+						<li><span>Email</span><a href="mailto:hello@fieldnotes.bio">hello@fieldnotes.bio</a></li>
+						<li><span>LinkedIn</span><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">linkedin.com/in/fieldnotes</a></li>
+						<li><span>GitHub</span><a href="https://github.com/" target="_blank" rel="noreferrer">github.com/fieldnotes</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="references" aria-labelledby="references-title">
+				<p class="section-kicker">Keep learning</p>
+				<h2 id="references-title">Reliable places to begin.</h2>
+				<p class="references-intro">These organizations offer databases, reporting standards, or publication guidance. Check the exact article or policy relevant to your project.</p>
+				<ul>
+					<li><a href="https://www.icmje.org/recommendations/" target="_blank" rel="noreferrer">ICMJE: Recommendations for the Conduct, Reporting, Editing, and Publication of Scholarly Work <span aria-label=" (opens in a new tab)">↗</span></a></li>
+					<li><a href="https://www.equator-network.org/" target="_blank" rel="noreferrer">EQUATOR Network: reporting guidelines <span aria-label=" (opens in a new tab)">↗</span></a></li>
+					<li><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" rel="noreferrer">NCBI Gene Expression Omnibus (GEO) <span aria-label=" (opens in a new tab)">↗</span></a></li>
+					<li><a href="https://physionet.org/" target="_blank" rel="noreferrer">PhysioNet: clinical and physiological data <span aria-label=" (opens in a new tab)">↗</span></a></li>
+					<li><a href="https://www.nhs.uk/" target="_blank" rel="noreferrer">NHS: health information <span aria-label=" (opens in a new tab)">↗</span></a></li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</main>
+
+<footer class="site-footer">
+	<a href="#top" class="footer-mark">Fieldnotes <span>/ Bioscience</span></a>
+	<p>Learn carefully. Question openly. Report honestly.</p>
+	<a href="mailto:hello@fieldnotes.bio" class="contact-link">hello@fieldnotes.bio</a>
+	<a href="#top" class="back-top">Back to top ↑</a>
+</footer>
+
+<style>
+	.skip-link { position: absolute; z-index: 5; top: 12px; left: 12px; padding: 12px 16px; transform: translateY(-160%); background: var(--ink); color: white; font-weight: 700; }
+	.skip-link:focus { transform: translateY(0); }
+	.site-header { min-height: 76px; padding: 0 clamp(22px, 6vw, 90px); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+	.wordmark, .footer-mark { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); font-size: 14px; font-weight: 700; text-decoration: none; }
+	.brand-mark { width: 31px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; font-family: 'Literata', Georgia, serif; font-size: 11px; }
+	.brand-divider, .footer-mark span { color: var(--green); }
+	.site-header nav { display: flex; gap: clamp(14px, 2.5vw, 36px); }
+	.site-header nav a { color: #294445; font-size: 14px; font-weight: 600; text-decoration: none; }
+	.site-header nav a:hover, .back-top:hover { color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+	.hero { min-height: 555px; padding: 65px clamp(24px, 8vw, 122px) 76px; display: grid; grid-template-columns: minmax(0, .86fr) minmax(370px, 1.14fr); gap: 34px; align-items: center; background: radial-gradient(ellipse at 18% 72%, rgba(218, 235, 222, .62), transparent 42%), #f5f8f5; }
+	.hero-copy { position: relative; z-index: 1; }
+	.eyebrow, .section-kicker { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+	.eyebrow { margin: 0 0 24px; display: flex; align-items: center; gap: 10px; }
+	.eyebrow span { width: 27px; height: 2px; background: var(--accent); }
+	h1, h2, h3 { font-family: 'Literata', Georgia, serif; }
+	h1 { margin: 0 0 24px; font-size: clamp(53px, 6.2vw, 84px); font-weight: 600; line-height: .99; }
+	h1 em { color: var(--green); font-weight: 500; }
+	.hero-intro { max-width: 430px; margin: 0 0 27px; color: #3f5959; font-size: 17px; line-height: 1.75; }
+	.hero-link { display: inline-flex; align-items: center; gap: 14px; padding: 10px 0; color: var(--blue); font-size: 15px; font-weight: 700; text-underline-offset: 5px; }
+	.hero-link span { font-size: 18px; }
+	.hero-note { margin: 44px 0 0; color: #526b68; font-family: 'Literata', Georgia, serif; font-size: 15px; font-style: italic; }
+	.hero-visual { position: relative; min-width: 0; margin: 0 0 0 14px; }
+	.hero-visual::before { position: absolute; inset: -16px 16px 16px -16px; border: 1px solid #abc8b9; content: ''; }
+	.hero-visual img { position: relative; width: 100%; height: 390px; display: block; object-fit: cover; object-position: center; filter: saturate(.82); }
+	.hero-visual figcaption { position: absolute; right: 0; bottom: 0; left: 0; display: flex; justify-content: space-between; padding: 13px 16px; background: rgba(18, 49, 48, .93); color: white; font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
+	.hero-index { position: absolute; top: -26px; right: -12px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .1em; writing-mode: vertical-rl; }
+	.guide-layout { max-width: 1440px; margin: 0 auto; padding: 72px clamp(24px, 8vw, 122px) 90px; display: grid; grid-template-columns: minmax(150px, .28fr) minmax(0, 1fr); gap: clamp(38px, 6.5vw, 100px); border-top: 1px solid var(--line); background: var(--paper); }
+	.contents { position: sticky; top: 28px; align-self: start; }
+	.contents-heading { margin: 0 0 20px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+	.contents ol, .references ul { margin: 0; padding: 0; list-style: none; }
+	.contents li + li { margin-top: 14px; }
+	.contents li a { display: grid; grid-template-columns: 25px 1fr; gap: 7px; color: #335050; font-size: 13px; font-weight: 600; line-height: 1.4; text-decoration: none; }
+	.contents li a span, .row-index { color: var(--accent); font-size: 10px; font-variant-numeric: tabular-nums; }
+	.contents li a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+	.contents-note { margin-top: 38px; padding-top: 15px; display: flex; gap: 9px; border-top: 1px solid var(--line); }
+	.contents-note span { width: 18px; height: 18px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--blue); border-radius: 50%; color: var(--blue); font-family: Georgia, serif; font-size: 11px; font-style: italic; }
+	.contents-note p { margin: 1px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+	.guide-content { min-width: 0; }
+	.section-lead { max-width: 740px; margin: 0 0 27px 61px; color: #425b5b; font-size: 15px; line-height: 1.8; }
+	.steps-grid { margin-left: 61px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+	.steps-grid article { padding: 20px 16px 22px 0; }
+	.steps-grid article + article { padding-left: 16px; border-left: 1px solid var(--line); }
+	.steps-grid article > span { color: var(--accent); font-family: 'Literata', Georgia, serif; font-size: 14px; }
+	.steps-grid h3, .source-row h3, .dataset-row h3 { margin: 10px 0 8px; font-size: 18px; font-weight: 600; }
+	.steps-grid p, .source-row div > p:last-child, .dataset-row p { margin: 0; color: #496263; font-size: 13px; line-height: 1.7; }
+	.ethics-callout { margin: 22px 0 0 61px; padding: 17px 19px; border-left: 3px solid var(--blue); background: #edf4f5; }
+	.ethics-callout strong { color: #194f60; font-size: 13px; }
+	.ethics-callout p { margin: 6px 0 0; color: #38585d; font-size: 12px; line-height: 1.7; }
+	.source-list, .dataset-list { margin-left: 61px; border-top: 1px solid var(--line); }
+	.source-row, .dataset-row { padding: 19px 0; display: grid; grid-template-columns: 38px 1fr; gap: 12px; border-bottom: 1px solid var(--line); }
+	.row-index { padding-top: 2px; font-weight: 700; }
+	.source-type { margin: 0; color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+	.source-row h3, .dataset-row h3 { margin: 5px 0; font-size: 19px; }
+	.source-row h3 a, .dataset-row h3 a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+	.source-row h3 a span, .dataset-row h3 a span { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; }
+	.evidence-panel { margin: 26px 0 0 61px; padding: 21px 24px; background: #eaf2ed; }
+	.evidence-panel h3 { margin: 0 0 14px; font-size: 19px; }
+	.evidence-panel ul { margin: 0; padding-left: 18px; color: #365251; font-size: 12px; line-height: 1.8; }
+	.evidence-panel li + li { margin-top: 4px; }
+	.evidence-panel li::marker { color: var(--green); }
+	.evidence-panel strong { color: var(--ink); }
+	.caution { margin: 15px 0 0; padding-top: 12px; border-top: 1px solid #c8d9d0; color: #405b57; font-size: 11px; line-height: 1.7; }
+	.research-image, .writing-image { margin: 25px 0 0 61px; }
+	.research-image img, .writing-image img { width: 100%; max-height: 230px; display: block; object-fit: cover; }
+	.research-image figcaption, .writing-image figcaption { padding-top: 8px; color: #526b68; font-family: 'Literata', Georgia, serif; font-size: 12px; font-style: italic; }
+	.dataset-row { padding: 19px 0; }
+	.dataset-row h3 { margin-top: 0; }
+	.data-callout { margin: 21px 0 0 61px; padding: 18px 20px; border: 1px solid #d7e4e1; background: #f0f6f6; }
+	.data-callout > div { display: flex; align-items: center; gap: 9px; }
+	.data-callout > div span { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-size: 12px; font-weight: 700; }
+	.data-callout h3 { margin: 0; color: #174d5a; font-size: 17px; }
+	.data-callout p { margin: 10px 0 0 31px; color: #38575b; font-size: 12px; line-height: 1.75; }
+	.workflow { margin: 19px 0 0 61px; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #34534f; font-size: 11px; font-weight: 600; }
+	.workflow span[aria-hidden='true'] { color: var(--accent); font-size: 14px; }
+	.imrad-list { margin-left: 61px; border-top: 1px solid var(--line); }
+	.imrad-list article { padding: 19px 0; display: grid; grid-template-columns: 42px 1fr; gap: 10px; border-bottom: 1px solid var(--line); }
+	.imrad-list article > span { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid #a9c7b7; border-radius: 50%; color: var(--green); font-family: 'Literata', Georgia, serif; font-size: 15px; }
+	.imrad-list h3 { margin: 0 0 7px; font-size: 18px; font-weight: 600; }
+	.imrad-list h3 small { margin-left: 7px; color: #526b68; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; }
+	.imrad-list p { margin: 0; color: #496263; font-size: 12px; line-height: 1.75; }
+	.imrad-list em { display: block; margin-top: 7px; color: var(--green); font-size: 11px; font-style: normal; font-weight: 600; }
+	.writing-image { margin-top: 23px; }
+	.writing-image img { max-height: 180px; }
+	.writing-note { margin: 20px 0 0 61px; padding: 17px 19px; border-left: 3px solid var(--accent); background: #f8f1ed; }
+	.writing-note strong { color: #58392f; font-size: 12px; }
+	.writing-note p { margin: 5px 0 0; color: #674b41; font-size: 11px; line-height: 1.7; }
+	.publish-steps { margin: 0 0 24px 61px; padding: 0; list-style: none; }
+	.publish-steps li { padding: 16px 0; display: grid; grid-template-columns: 28px 1fr; gap: 10px; border-top: 1px solid var(--line); }
+	.publish-steps li > span { color: var(--accent); font-family: 'Literata', Georgia, serif; font-size: 15px; }
+	.publish-steps h3 { margin: 0 0 5px; font-size: 17px; font-weight: 600; }
+	.publish-steps p { margin: 0; color: #496263; font-size: 12px; line-height: 1.7; }
+	.guideline-band { margin-left: 61px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px; background: #eaf2ed; }
+	.guideline-band .source-type { margin-bottom: 6px; }
+	.guideline-band h3 { margin: 0 0 4px; font-size: 17px; }
+	.guideline-band p:last-child { margin: 0; color: #496263; font-size: 11px; }
+	.guideline-band > a { flex: 0 0 auto; color: var(--blue); font-size: 12px; font-weight: 700; text-underline-offset: 4px; }
+	.contact { margin-left: 61px; padding-top: 56px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+	.contact h2 { margin: 0 0 18px; font-size: 31px; }
+	.contact-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(210px, 0.9fr); gap: 18px; padding: 22px 20px; background: #edf4f5; border: 1px solid var(--line); }
+	.contact-copy p { margin: 0; color: #35515b; font-size: 13px; line-height: 1.8; }
+	.contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+	.contact-list li { display: grid; grid-template-columns: 68px 1fr; gap: 10px; align-items: baseline; padding-bottom: 8px; border-bottom: 1px solid rgba(23, 99, 78, 0.15); }
+	.contact-list li:last-child { padding-bottom: 0; border-bottom: 0; }
+	.contact-list span { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+	.contact-list a { color: var(--blue); font-size: 13px; font-weight: 600; text-underline-offset: 3px; }
+	.references { margin-left: 61px; padding-top: 56px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+	.references .section-kicker { margin: 0 0 8px; }
+	.references h2 { margin: 0 0 12px; font-size: 30px; font-weight: 600; }
+	.references-intro { margin: 0 0 17px; color: #496263; font-size: 12px; line-height: 1.7; }
+	.references li { padding: 10px 0; border-top: 1px solid var(--line); }
+	.references li a { color: var(--blue); font-size: 12px; font-weight: 600; line-height: 1.5; text-underline-offset: 3px; }
+	.site-footer { min-height: 78px; padding: 19px clamp(24px, 8vw, 122px); display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); background: #eaf2ed; }
+	.footer-mark { font-family: 'Literata', Georgia, serif; font-size: 13px; }
+	.site-footer p { margin: 0; color: #496263; font-family: 'Literata', Georgia, serif; font-size: 12px; font-style: italic; }
+	.contact-link, .back-top { color: var(--blue); font-size: 11px; font-weight: 700; text-decoration: none; }
+	@media (max-width: 900px) {
+		.hero { min-height: 500px; grid-template-columns: minmax(0, .9fr) minmax(300px, 1.1fr); padding-right: 7vw; padding-left: 7vw; }
+		.hero-visual img { height: 340px; }
+		.guide-layout { padding-right: 7vw; padding-left: 7vw; grid-template-columns: minmax(140px, .25fr) minmax(0, 1fr); gap: 36px; }
+		.section-lead, .steps-grid, .ethics-callout, .source-list, .evidence-panel, .research-image, .dataset-list, .data-callout, .workflow, .imrad-list, .writing-note, .writing-image, .publish-steps, .guideline-band, .contact, .references { margin-left: 0; }
+		.contact-panel { grid-template-columns: 1fr; }
+	}
+	@media (max-width: 680px) {
+		.site-header { min-height: 68px; padding: 14px 20px; align-items: flex-start; flex-direction: column; gap: 13px; }
+		.site-header nav { width: 100%; gap: 0; justify-content: space-between; }
+		.site-header nav a { font-size: 12px; }
+		.hero { min-height: 0; padding: 46px 24px 54px; grid-template-columns: 1fr; gap: 35px; }
+		h1 { font-size: clamp(52px, 12vw, 70px); }
+		.hero-note { margin-top: 26px; }
+		.hero-visual { margin-left: 10px; }
+		.hero-visual img { height: 260px; }
+		.guide-layout { padding: 28px 24px 60px; grid-template-columns: 1fr; gap: 33px; }
+		.contents { position: static; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+		.contents-heading { margin-bottom: 12px; }
+		.contents ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; }
+		.contents li + li { margin-top: 0; }
+		.contents li a { grid-template-columns: 22px 1fr; font-size: 12px; }
+		.contents-note { margin-top: 16px; padding-top: 11px; }
+		.guide-section { padding-bottom: 48px; }
+		.guide-section + .guide-section { padding-top: 43px; }
+		.section-heading { grid-template-columns: 32px 1fr; gap: 9px; }
+		.section-heading h2 { font-size: 31px; }
+		.section-lead { font-size: 14px; }
+		.steps-grid { grid-template-columns: 1fr; }
+		.steps-grid article { padding: 16px 0; }
+		.steps-grid article + article { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+		.steps-grid h3 { margin-top: 6px; }
+		.evidence-panel { padding: 18px; }
+		.workflow { align-items: flex-start; flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
+		.imrad-list article { grid-template-columns: 37px 1fr; gap: 7px; }
+		.imrad-list h3 small { display: block; margin: 3px 0 0; }
+		.guideline-band { align-items: flex-start; flex-direction: column; }
+		.references h2 { font-size: 27px; }
+		.site-footer { padding: 19px 24px; align-items: flex-start; flex-direction: column; gap: 9px; }
+	}
+</style>

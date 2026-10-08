@@ -1,0 +1,84 @@
+---
+interface Props {
+	id: string;
+	number: string;
+	kicker: string;
+	title: string;
+}
+
+const { id, number, kicker, title } = Astro.props;
+---
+
+<section class="guide-section" id={id} aria-labelledby={`${id}-title`}>
+	<div class="section-heading">
+		<span class="section-number" aria-hidden="true">{number}</span>
+		<div>
+			<p class="section-kicker">{kicker}</p>
+			<h2 id={`${id}-title`}>{title}</h2>
+		</div>
+	</div>
+	<slot />
+</section>
+
+<style>
+	.guide-section {
+		padding: 0 0 68px;
+		scroll-margin-top: 24px;
+	}
+
+	.guide-section + .guide-section {
+		padding-top: 62px;
+		border-top: 1px solid var(--line);
+	}
+
+	.section-heading {
+		margin-bottom: 22px;
+		display: grid;
+		grid-template-columns: 45px 1fr;
+		gap: 16px;
+		align-items: start;
+	}
+
+	.section-number {
+		padding-top: 7px;
+		color: var(--accent);
+		font-family: 'Literata', Georgia, serif;
+		font-size: 18px;
+	}
+
+	.section-kicker {
+		margin: 0 0 8px;
+		color: var(--green);
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.11em;
+		text-transform: uppercase;
+	}
+
+	h2 {
+		margin: 0;
+		font-family: 'Literata', Georgia, serif;
+		font-size: clamp(30px, 3.1vw, 41px);
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	@media (max-width: 680px) {
+		.guide-section {
+			padding-bottom: 50px;
+		}
+
+		.guide-section + .guide-section {
+			padding-top: 46px;
+		}
+
+		.section-heading {
+			grid-template-columns: 33px 1fr;
+			gap: 10px;
+		}
+
+		h2 {
+			font-size: 31px;
+		}
+	}
+</style>
